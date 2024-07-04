@@ -12,4 +12,6 @@ how to use：
 vitis_hls -f c2rtl.tcl 
 ```
 
-todo: need figure out top_function_name in c2rtl.tcl.
+todo: 
+
+now, for each c files, need configure top_function_name in c2rtl.tcl
