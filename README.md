@@ -9,7 +9,8 @@ output: ./c_file_name/solution1/syn/veilog/top_function_name.v
 how to use：
 
 ```shell
-vitis_hls -f c2rtl.tcl 
+vitis_hls -f c2rtl.tcl
+python extract_rtl_code.py
 ```
 
 todo: 
