@@ -2,6 +2,12 @@
 
 use vitis HLS to convert c (hls level) to veilog(rtl level) in batches.
 
+## env
+
+vitis HLS.
+
+GNU parallel. [how to install](https://blog.csdn.net/weixin_40192882/article/details/136072504)
+
 ## c2rtl
 
 ```shell
@@ -17,6 +23,8 @@ output: ./c_file_name/solution1/syn/veilog/top_function_name.v
 ```shell
 python extract_rtl_code.py
 ```
+
+input: ./c_file_name/solution1/syn/veilog/top_function_name.v
 
 output: ./rtl/*.v
 
