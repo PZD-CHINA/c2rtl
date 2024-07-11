@@ -4,7 +4,9 @@ use vitis HLS to convert c (hls level) to veilog(rtl level) in batches.
 
 ## env
 
-### install vitis HLS
+### configure vitis HLS
+
+vitis already installed at /data/zedong/vitis. Only need to configure vitis environment.
 
 ```shell
 echo 'source /data/zedong/vitis/Vivado/2022.2/settings64.sh' >> ~/.bashrc
