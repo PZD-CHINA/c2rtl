@@ -43,4 +43,6 @@ output: ./rtl/*.v
 
 ## todo: 
 
-now, for each c files, need configure top_function_name in c2rtl.tcl
+problem: need configure top_function_name for each c files in c2rtl.tcl 
+
+solution: parse all function name or llm extract top function name.
