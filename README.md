@@ -4,7 +4,7 @@ use vitis HLS to convert c (hls level) to veilog(rtl level) in batches.
 
 ## env
 
-### install vitis HLS.
+### install vitis HLS
 
 ```shell
 echo 'source /data/zedong/vitis/Vivado/2022.2/settings64.sh' >> ~/.bashrc
@@ -12,7 +12,7 @@ source ~/.bashrc
 vitis --version
 ```
 
-### install GNU parallel. [how to install](https://blog.csdn.net/weixin_40192882/article/details/136072504)
+### install GNU parallel for parallel code running
 
 ```shell
 (wget -O - pi.dk/3 || curl pi.dk/3/) | bash
