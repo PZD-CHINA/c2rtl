@@ -6,7 +6,8 @@ Table of Contents:
     - [configure vitis HLS](#configure-vitis-hls)
     - [install GNU parallel for parallel code running](#install-gnu-parallel-for-parallel-code-running)
   - [How to convert c file to rtl (Verilog)](#how-to-convert-c-file-to-rtl-verilog)
-  - [c2rtl in batches](#c2rtl-in-batches)
+  - [How to use c2rtl\_this\_path.py](#how-to-use-c2rtl_this_pathpy)
+  - [How to use c2rtl.tcl](#how-to-use-c2rtltcl)
   - [extract rtl code from vitis log](#extract-rtl-code-from-vitis-log)
   - [todo:](#todo)
 
@@ -64,8 +65,17 @@ parallel --version
 
 4. After running the code, a new folder named `prog_name` will be created in the current directory. The converted Verilog code can be found at `./proj_name/solution1/syn/verilog/`.
 
+## How to use c2rtl_this_path.py
 
-## c2rtl in batches
+run `python c2rtl_this_path.py`. 
+
+This script:
+
+1. scan a directory for all .c and .cpp files. 
+2. For each .c file, it creates a run_hls.tcl script.
+3. auto run run_hls.tcl and convert c to rtl.
+
+## How to use c2rtl.tcl
 
 ```shell
 vitis_hls -f c2rtl.tcl
