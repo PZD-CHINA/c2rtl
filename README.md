@@ -63,7 +63,7 @@ parallel --version
 
 3. Run `vitis_hls -f run_hls.tcl` in shell.
 
-4. After running the code, a new folder named `prog_name` will be created in the current directory. The converted Verilog code can be found at `./proj_name/solution1/syn/verilog/`.
+4. After running the code, a new folder named `proj_name` will be created in the current directory. The converted Verilog code can be found at `./proj_name/solution1/syn/verilog/`.
 
 ## How to use c2rtl_this_path.py
 
