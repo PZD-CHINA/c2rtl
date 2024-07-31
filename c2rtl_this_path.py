@@ -11,10 +11,10 @@ def convert_to_legal_name(file_path):
     return re.sub(r'[^a-zA-Z0-9_]', '_', file_path)
 
 # Function to generate TCL script content
-def generate_tcl_script(project_name, c_file):
+def generate_tcl_script(project_name, c_file, function_name):
     tcl_content = f"""
 open_project -reset {project_name}
-set_top fn1
+set_top {function_name}
 add_files {c_file}
 open_solution -reset solution1
 set_part {{xcvu9p-flga2104-2-i}}
@@ -38,22 +38,34 @@ def run_tcl_script(tcl_script_path):
     except subprocess.CalledProcessError as e:
         print(f"Error executing {tcl_script_path}:\n{e.stderr}")
 
+# Function to extract function names from .c file
+def extract_function_names(c_file_path):
+    function_names = []
+    with open(c_file_path, "r") as file:
+        content = file.read()
+        function_names = re.findall(r'^\s*\w+\s+\w+\s*\(.*\)\s*{', content, re.MULTILINE)
+        function_names = [re.match(r'^\s*(\w+)\s+(\w+)', fn).group(2) for fn in function_names]
+    return function_names
+
 # Function to process each .c file
 def process_c_file(c_file_path):
     project_name = convert_to_legal_name(c_file_path)
-    tcl_script_path = os.path.join(os.path.dirname(c_file_path), f"run_hls_{project_name}.tcl")
+    function_names = extract_function_names(c_file_path)
 
-    # Generate and save the TCL script
-    tcl_content = generate_tcl_script(project_name, c_file_path)
-    with open(tcl_script_path, "w") as tcl_file:
-        tcl_file.write(tcl_content)
+    for function_name in function_names:
+        tcl_script_path = os.path.join(os.path.dirname(c_file_path), f"run_hls_{project_name}_{function_name}.tcl")
 
-    # Print the file being processed and the TCL script content
-    print(f"Processing file: {c_file_path}")
-    print(f"TCL script content for {c_file_path}:\n{tcl_content}")
+        # Generate and save the TCL script
+        tcl_content = generate_tcl_script(project_name, c_file_path, function_name)
+        with open(tcl_script_path, "w") as tcl_file:
+            tcl_file.write(tcl_content)
 
-    # Run the TCL script
-    run_tcl_script(tcl_script_path)
+        # Print the file being processed and the TCL script content
+        print(f"Processing file: {c_file_path}")
+        print(f"TCL script content for {c_file_path} with function {function_name}:\n{tcl_content}")
+
+        # Run the TCL script
+        run_tcl_script(tcl_script_path)
 
 # Main script
 if __name__ == "__main__":
